@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 connectDatabase();
-app.use('/notion',router);
+app.use(router);
 
 app.listen(PORT,()=>{
     console.log("connected to backend");

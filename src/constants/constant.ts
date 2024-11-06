@@ -1,8 +1,10 @@
 
 
 export const COL={
-        users:"users",
-        workspace:"workspaec"
+        users:"Users",
+        workspace:"Workspaces",
+        folder:"Folders",
+        file:"Files"
 }
 
 

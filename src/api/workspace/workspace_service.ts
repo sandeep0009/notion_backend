@@ -1,17 +1,47 @@
 import { Db } from "mongodb";
 import { COL } from "../../constants/constant";
 
-
-
 const create=async(
     db:Db,
-    body:any
+    body:any,
+    id:string
 ):Promise<any>=>{
-    const {}=body;
+    const data=db.collection(COL.workspace).insertOne({
+        body,
+        workspaceOwner:id
+    })
+    return data;   
 
 }
 
+const find=async(
+    workspaceId:string,
+    db:Db
+):Promise<any>=>{
+    if(!workspaceId)return;
+    const data=await db.collection(COL.workspace).findOne({workspaceId});
+    if(!data){
+        throw{
+            status:404,
+            error:"doesn't exist"
+        }
+    }
+    return data.toArray();
+}
+
+const remove=async(
+    workspaceId:string,
+    db:Db
+):Promise<any>=>{
+    if(!workspaceId)return;
+    await db.collection(COL.workspace).deleteOne({workspaceId});
+}
+
+
+
 
 export default {
-    create
+    create,
+    find,
+    remove
 }

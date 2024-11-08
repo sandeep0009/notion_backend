@@ -35,7 +35,46 @@ const create=async(
 }
 
 
+const find=async(
+    db:Db,
+    folderId:string
+):Promise<any>=>{
+    if(!folderId)return;
+    const data=await db.collection(COL.file)
+    .find({folderId})
+    .sort({createAt:1})
+    .toArray()
 
+    return data;
+}
+
+
+const findById=async(
+    db:Db,
+    fileId:string
+):Promise<any>=>{
+    if(!fileId)return;
+    const data=await db.collection(COL.file)
+    .find({fileId})
+   
+
+    return data;
+}
+
+
+
+const remove=async(
+    db:Db,
+    fileId:string
+):Promise<any>=>{
+    if(!fileId)return;
+    await db.collection(COL.file)
+    .deleteOne({fileId})
+
+}
 export default{
-    create
+    create,
+    find,
+    findById,
+    remove
 }

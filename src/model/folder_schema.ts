@@ -2,7 +2,7 @@ import mongoose, { Document, Schema, Types } from 'mongoose';
 
 export interface IFolder extends Document {
     workspaceId: Types.ObjectId; 
-    iconId:string
+    iconId:string;
     title: string; 
     data: any;  
     inTrash: boolean;  

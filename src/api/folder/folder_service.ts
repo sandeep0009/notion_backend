@@ -1,6 +1,5 @@
 import { Db } from "mongodb";
 import { COL } from "../../constants/constant";
-import { error } from "console";
 
 
 

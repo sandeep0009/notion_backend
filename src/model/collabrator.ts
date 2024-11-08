@@ -21,4 +21,4 @@ const collabratorSchema=new Schema<IColabrator>({
 
 },{timestamps:true})
 
-export default mongoose.model<IColabrator>('Colabrator', collabratorSchema);
+export default mongoose.model<IColabrator>('Collabrator', collabratorSchema);

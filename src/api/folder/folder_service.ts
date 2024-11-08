@@ -24,6 +24,46 @@ const create=async(
     return data;
 }
 
+
+const find=async(
+    db:Db,
+    workspaceId:string
+):Promise<any>=>{
+    if(!workspaceId)return;
+    const data=await db.collection(COL.folder)
+                        .find({workspaceId})
+                        .sort({createdAt:1})
+                        .toArray()
+
+    return data;
+    
+
+}
+
+
+const findById=async(
+    db:Db,
+    folderId:string
+
+):Promise<any>=>{
+    if(!folderId)return;
+    const data=await db.collection(COL.folder).findOne({folderId});
+    return data;
+}
+
+
+const remove=async(
+    db:Db,
+    folderId:string
+
+):Promise<any>=>{
+    if(!folderId)return;
+    const data=await db.collection(COL.folder).deleteOne({folderId});
+    return data;
+}
 export default{
-    create
+    create,
+    find,
+    findById,
+    remove
 }

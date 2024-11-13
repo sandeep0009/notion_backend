@@ -38,10 +38,24 @@ const remove=async(
 }
 
 
+const update=async(
+    workspaceId:string,
+    body:any,
+    db:Db
+):Promise<any>=>{
+    if (!workspaceId)return
+    const updateOperation={
+        $set:body
+    }
+    const data=await db.collection(COL.workspace).findOneAndUpdate({workspaceId},updateOperation);
+    return data;
+}
+
 
 
 export default {
     create,
     find,
-    remove
+    remove,
+    update
 }

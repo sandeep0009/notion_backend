@@ -54,3 +54,20 @@ export const remove=async(
         
     }
 }
+
+export const update=async(
+    req:Request|any,
+    res:Response,
+    next:NextFunction
+):Promise<any>=>{
+    try {
+        const {db}=req.app.local;
+        const {id}=req.params;
+        const data=await service.update(db,id,req.body);
+        return res.status(200).send({message:"updated successfully",data});        
+    } catch (e) {
+        next(e)
+        
+    }
+}
+
